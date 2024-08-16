@@ -5,3 +5,15 @@ const clothingItems = [
   { name: 'White Sneakers', price: 79.99, quantity: 4 },
   { name: 'Sunglasses', price: 14.99, quantity: 20 },
 ];
+
+const calculateSubtotal = (items) => {
+  let subtotal = 0;
+
+  for (let i = 0; i < items.length; i++) {
+    subtotal += items[i]['price'] * items[i]['quantity'];
+  }
+
+  return subtotal;
+};
+
+console.log(calculateSubtotal(clothingItems));
