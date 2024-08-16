@@ -26,11 +26,16 @@ const applyDiscount = (items, subtotalLogic, discount) => {
 
 console.log(applyDiscount(clothingItems, calculateSubtotal, 0.05));
 
-const calculateTax = (discountLogic) => {
+const calculateTax = (discountLogic, taxRate) => {
   // Tax calculation assumes the main VAT rate of 7.5% in Nigeria
-  const tax = discountLogic * 0.075;
-  console.log('Tax: ', tax);
+  const tax = discountLogic * taxRate;
   return discountLogic + tax;
 };
 
-console.log(calculateTax(applyDiscount(clothingItems, calculateSubtotal, 0.05)));
+console.log(calculateTax(applyDiscount(clothingItems, calculateSubtotal, 0.05), 0.075));
+
+const calculateTotal = (subtotalFn, discountFn, taxFn, items, discount, tax) => {
+  return parseFloat(taxFn(discountFn(items, subtotalFn, discount), tax)).toFixed(2);
+};
+
+console.log(calculateTotal(calculateSubtotal, applyDiscount, calculateTax, clothingItems, 0.05, 0.075));
