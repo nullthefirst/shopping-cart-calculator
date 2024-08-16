@@ -17,3 +17,11 @@ const calculateSubtotal = (items) => {
 };
 
 console.log(calculateSubtotal(clothingItems));
+
+const applyDiscount = (items, subtotalLogic, discount) => {
+  const subtotal = subtotalLogic(items);
+
+  return parseFloat(subtotal - subtotal * discount).toFixed(2);
+};
+
+console.log(applyDiscount(clothingItems, calculateSubtotal, 0.05));
